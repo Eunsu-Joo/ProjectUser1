@@ -2,7 +2,11 @@ import styles from "@/styles/Header.module.css";
 import Link from "next/link";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import { useRouter } from "next/router";
+import { useRecoilValue } from "recoil";
+import { userState } from "lib/store";
 export default function Nav() {
+  const username = useRecoilValue(userState);
+  console.log(username);
   const {
     pathname,
     push,
@@ -40,7 +44,7 @@ export default function Nav() {
           </ul>
           <div className={styles.user}>
             <InsertEmoticonIcon className={styles.icon} />
-            Hello Users
+            Hello {username}
           </div>
         </>
       ) : (

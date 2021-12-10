@@ -1,16 +1,22 @@
 import Layout from "@/components/Layout";
-import { userSelector, userState } from "lib/store";
-import { useRecoilState, useRecoilValueLoadable,useRecoilValue } from "recoil";
-const [data,setData]= useRecoilState(userState);
-export default function Home() {
+import UserItem from "@/components/UserItem";
+import styles from "@/styles/Home.module.css";
 
-  return <Layout>Hello</Layout>;
+export default function Home({ users }) {
+  return (
+    <Layout>
+      <h1 className={styles.title}>Hello Users</h1>
+      {users.map((user) => (
+        <UserItem user={user} key={user.id} />
+      ))}
+    </Layout>
+  );
 }
 
-// export async function getStaticProps(){
-//   const res= await fetch(`https://jsonplaceholder.typicode.com/users`);
-//   const users= await res.json();
-//   return {
-//     props:{users}
-//   }
-// }
+export async function getServerSideProps() {
+  const res = await fetch(`https://jsonplaceholder.typicode.com/users`);
+  const users = await res.json();
+  return {
+    props: { users },
+  };
+}
