@@ -1,19 +1,24 @@
 .users {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin: 20px 0;
-  padding: 13px;
-  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.1), -2px -3px 5px rgba(0, 0, 0, 0.1);
+  padding: 2em 1em;
+  transition: 0.2s;
+}
+
+.users * {
+  text-align: center;
+}
+.users h3 {
+  margin-bottom: 1rem;
 }
 .users h3:hover {
   text-decoration: underline;
   cursor: pointer;
 }
 .img {
-  flex: 1;
-  width: 200px;
-  height: 200px;
+  width: 100%;
   margin: 10px;
   overflow: hidden;
 }
@@ -21,20 +26,22 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: 0.3s;
+  filter: sepia(0.5) grayscale(1);
 }
-.info {
-  flex: 2;
-}
-.link:nth-last-child(1) {
-  margin-left: 1rem;
-}
-@media (max-width: 600px) {
-  .event {
-    flex-direction: column;
-    text-align: center;
-  }
 
-  .info {
-    margin-bottom: 20px;
+.link {
+  margin-top: 1rem;
+}
+@media (min-width: 1280px) {
+  .users:hover .img img {
+    transform: scale(1.2);
+    filter: sepia(0) grayscale(0) contrast(1);
+  }
+  .users:hover {
+    background-color: #eeeeee;
+  }
+  .users:hover .btn {
+    outline: 1px solid #fff;
   }
 }

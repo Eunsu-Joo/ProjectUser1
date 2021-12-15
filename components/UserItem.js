@@ -1,39 +1,27 @@
-import Link from "next/link";
-import Image from "next/image";
 import styles from "@/styles/UserItem.module.css";
+import useStore from "lib/default";
 import { useRouter } from "next/router";
-import { useRecoilState } from "recoil";
-import { userState } from "lib/store";
-
+import { DeleteBtn, EditBtn } from "./Btn";
 export default function UserItem({ user }) {
   const router = useRouter();
-  const [username, setUsernameState] = useRecoilState(userState);
+  const { setUser } = useStore();
   const handleClick = () => {
     router.push(`/users/${user.id}`);
-    setUsernameState(user.username);
+    setUser(user);
   };
-
   return (
     <div className={styles.users}>
       <div className={styles.img}>
         <img src={`/images/user${user.id}.jpg`} />
       </div>
-
-      <div className={styles.info}>
-        <h3 onClick={handleClick}>
-          {user.name} / {user.username}
-        </h3>
-        <p>{user.phone}</p>
-        <p>{user.email}</p>
-      </div>
-
+      <h3 onClick={handleClick}>
+        {user.name} / {user.username}
+      </h3>
+      <p>{user.phone}</p>
+      <p>{user.email}</p>
       <div className={styles.link}>
-        <Link href={`/edit/${user.id}`}>
-          <a className="btn">Edit</a>
-        </Link>
-      </div>
-      <div className={styles.link}>
-        <button className="btn">Delete</button>
+        <DeleteBtn id={user.id} />
+        <EditBtn id={user.id} data={user} />
       </div>
     </div>
   );

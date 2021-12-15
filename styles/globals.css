@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;600&family=Poppins:wght@300;400;500;600&family=Roboto+Mono:wght@400;500;600&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap");
 * {
   box-sizing: border-box;
   padding: 0;
@@ -23,27 +24,88 @@ li,
 ol {
   list-style: none;
 }
-
-.btn {
+.container {
+  width: 1280px;
+  margin: 0 auto;
+  padding: 60px 0;
+  border: 1px solid black;
+}
+@media (min-width: 768px) and (max-width: 1280px) {
+  .container {
+    width: 90%;
+  }
+}
+@media (min-width: 320px) and (max-width: 450px) {
+  .container {
+    width: 90%;
+    padding: 50px 0;
+  }
+}
+.btn,
+.staticBtn {
   border: 0;
-  font-family: "Roboto Mono", monospace;
-  background-color: #000;
-  color: #fff;
-  font-size: 1.2rem;
-  padding: 0.3em 0.7em;
+  background: none;
+  font-size: 1rem;
+  padding: 0.3em 0.5em;
   border-radius: 4px;
   cursor: pointer;
   transition: 0.1s;
+  letter-spacing: 0.5px;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  color: #fff;
+  margin-right: 0.5em;
+  background-color: #636e72;
+  font-size: 0.9em;
 }
-.btn:hover {
-  background-color: #f9f9f9;
-  color: #000;
-  outline: 1px solid #000;
+
+.btn svg {
+  margin-right: 0.3em;
+  font-size: 0.9em;
 }
-.currentNav {
-  border-bottom: 1.5px solid black;
-  font-weight: 600;
+
+.top {
+  position: fixed;
+  right: 5%;
+  bottom: 5%;
+  /* right: 10%;
+  bottom: 10%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #000;
+  padding: 0.5em 1em;
+  color: #f9f9f9;
+  cursor: pointer;
 }
-.mg {
-  margin-right: 1rem;
+.container {
+  width: 1280px;
+  margin: 0 auto;
+}
+@media (min-width: 1280px) {
+  .btn:hover {
+    background-color: inherit;
+    outline: 1px solid #636e72;
+    color: #444;
+  }
+}
+@media (min-width: 320px) and (max-width: 450px) {
+  .btn {
+    font-size: 0.9rem;
+  }
+}
+input {
+  width: 320px;
+  height: 36px;
+  margin-bottom: 0.5em;
+  background-color: inherit;
+  border: 0;
+  background-color: #fff;
+  border-radius: 4px;
+  padding-left: 0.5em;
+  font-family: "Poppins", sans-serif;
+}
+input:focus {
+  outline: 0;
 }

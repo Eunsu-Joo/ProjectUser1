@@ -1,12 +1,10 @@
 import styles from "@/styles/Header.module.css";
+import useStore from "lib/default";
 import Link from "next/link";
-import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import { useRouter } from "next/router";
-import { useRecoilValue } from "recoil";
-import { userState } from "lib/store";
+import { EnrollBtn } from "../Btn";
 export default function Nav() {
-  const username = useRecoilValue(userState);
-  console.log(username);
+  const { user } = useStore();
   const {
     pathname,
     push,
@@ -19,23 +17,33 @@ export default function Nav() {
           {" "}
           <ul className={styles.gnb}>
             <li>
-              <Link href={`/posts/1`}>
-                <a className={pathname.includes("posts") ? `currentNav` : null}>
+              <Link href={`/posts/${userId}`}>
+                <a
+                  className={
+                    pathname.includes("posts") ? `${styles.currentNav}` : null
+                  }
+                >
                   POSTS
                 </a>
               </Link>
             </li>
             <li>
-              <Link href={`/todos/1`}>
-                <a className={pathname.includes("todos") ? `currentNav` : null}>
+              <Link href={`/todos/${userId}`}>
+                <a
+                  className={
+                    pathname.includes("todos") ? `${styles.currentNav}` : null
+                  }
+                >
                   TODOS
                 </a>
               </Link>
             </li>
             <li>
-              <Link href={`/albums/1`}>
+              <Link href={`/albums/${userId}`}>
                 <a
-                  className={pathname.includes("albums") ? `currentNav` : null}
+                  className={
+                    pathname.includes("albums") ? `${styles.currentNav}` : null
+                  }
                 >
                   ALBUMS
                 </a>
@@ -43,16 +51,12 @@ export default function Nav() {
             </li>
           </ul>
           <div className={styles.user}>
-            <InsertEmoticonIcon className={styles.icon} />
-            Hello {username}
+            Hello {user ? user.username : null}{" "}
           </div>
         </>
       ) : (
         <>
-          <p className={styles.title}>Hello User's World!</p>
-          <button className="btn" onClick={() => push("/signup")}>
-            Enroll
-          </button>
+          <EnrollBtn />
         </>
       )}
     </>

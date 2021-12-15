@@ -1,0 +1,230 @@
+.container {
+  width: 1280px;
+  margin: 0 auto;
+}
+.first {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+.first:after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  backdrop-filter: grayscale(1) contrast(0.9);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.title {
+  text-align: center;
+  font-size: 5rem;
+  width: 100%;
+  font-family: "Shadows Into Light", cursive;
+  color: #fff;
+  position: absolute;
+  bottom: 6rem;
+  line-height: 6rem;
+}
+.title span {
+  display: block;
+  font-size: 5rem;
+}
+.scroll {
+  color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  letter-spacing: 16px;
+  font-size: 1.5rem;
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.scroll svg {
+  margin-right: 0.5rem;
+}
+.secondary {
+  font-size: 1rem;
+}
+.secondary::before {
+  content: "";
+  width: 100vw;
+  height: 800px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #f1eff0;
+  z-index: -10;
+}
+.secondary .container {
+  padding: 60px 0;
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+.info {
+  flex: 1;
+  order: 1;
+  padding-right: 1.5rem;
+}
+.img {
+  flex: 2;
+  overflow: hidden;
+  align-self: center;
+  order: 2;
+}
+
+.info > p:nth-child(1) {
+  font-family: "Shadows Into Light", cursive;
+  font-size: 1.2em;
+  line-height: 0;
+}
+.container h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 2.2em;
+  margin: 1rem 0 2rem 0;
+  line-height: 1.2;
+}
+.info .desc {
+  font-size: 0.9em;
+  line-height: 1.3;
+  margin-bottom: 4rem;
+}
+.img img {
+  width: 120%;
+  filter: grayscale(0.6);
+}
+.info ul li {
+  margin-bottom: 1em;
+}
+.info ul li p {
+  font-weight: 600;
+  border-bottom: 1px solid black;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
+  line-height: 1.2;
+}
+.third .container {
+  padding: 60px 0;
+}
+.list {
+  display: flex;
+}
+.list li {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em;
+}
+.list li > span {
+  font-family: "Shadows Into Light", cursive;
+  font-size: 1.2em;
+  margin-bottom: 1em;
+  word-break: keep-all;
+  word-wrap: break-word;
+}
+.list img {
+  width: 100%;
+}
+.list h2 {
+  letter-spacing: 4px;
+}
+.list li p {
+  line-height: 1.3;
+}
+.icons {
+  width: 120px;
+  margin-top: 1em;
+  font-size: 1.3em;
+  display: flex;
+  justify-content: space-around;
+}
+.icons svg {
+  cursor: pointer;
+  position: relative;
+  opacity: 0.6;
+}
+
+.icons svg:hover {
+  opacity: 1;
+}
+@media (max-width: 1280px) {
+  .scroll {
+    display: none;
+  }
+}
+@media (min-width: 768px) and (max-width: 1280px) {
+  .container {
+    width: 90%;
+  }
+  .secondary .container {
+    flex-direction: column;
+    font-size: 0.9rem;
+  }
+  .img {
+    order: 1;
+    overflow: visible;
+  }
+  .img img {
+    width: 100%;
+  }
+  .info {
+    order: 2;
+    margin-top: 1rem;
+  }
+  .third .container {
+    font-size: 0.9rem;
+  }
+}
+@media (min-width: 320px) and (max-width: 450px) {
+  .secondary .container,
+  .third .container {
+    flex-direction: column;
+    width: 90%;
+  }
+  .info > p:nth-child(1) {
+    font-family: "Shadows Into Light", cursive;
+    line-height: 0;
+  }
+  .secondary {
+    font-size: 0.7rem;
+  }
+  .secondary::before {
+    top: 0;
+  }
+  .img {
+    order: 1;
+    overflow: visible;
+  }
+  .img img {
+    width: 100%;
+  }
+  .info {
+    order: 2;
+    margin-top: 1rem;
+    padding: 1rem;
+  }
+  .info h2,
+  .info .desc {
+    margin-bottom: 1rem;
+  }
+  .list {
+    flex-direction: column;
+  }
+  .third {
+    font-size: 0.8em;
+  }
+  .list img {
+    width: 50%;
+  }
+}
