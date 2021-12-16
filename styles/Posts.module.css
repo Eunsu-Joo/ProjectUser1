@@ -1,4 +1,4 @@
-.article h2 {
+.title {
   font-size: 5rem;
   font-family: "Playfair Display", serif;
   letter-spacing: 3px;
@@ -35,4 +35,42 @@
 }
 .link:hover {
   text-decoration: underline;
+}
+.newPost {
+  padding: 2rem 0 0;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.newPost h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.newPost input {
+  width: 100%;
+  margin-bottom: 1rem;
+  background-color: #dfe6e9;
+}
+.newPost input:focus {
+  background-color: #f1f6f7;
+}
+.btns {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.newPost textarea {
+  background-color: #dfe6e9;
+  width: 100%;
+  height: 300px;
+  border-radius: 4px;
+  padding-left: 1rem;
+  font-size: 1rem;
+  border: 0;
+  padding-top: 1rem;
+  font-family: "Poppins", sans-serif;
+}
+.newPost textarea:focus {
+  background-color: #f1f6f7;
+  outline: 0;
 }

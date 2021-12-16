@@ -29,19 +29,7 @@
   display: inline-block;
   width: 100px;
 }
-.inputBox input {
-  width: 320px;
-  height: 36px;
-  margin-bottom: 0.5em;
-  background-color: inherit;
-  border: 0;
-  background-color: #fff;
-  border-radius: 4px;
-  padding-left: 0.5em;
-}
-.inputBox input:focus {
-  outline: 0;
-}
+
 .inputBox p {
   width: 100%;
   font-size: 0.8em;

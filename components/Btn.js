@@ -22,7 +22,7 @@ export const EditBtn = ({ data, id }) => {
   const router = useRouter();
   const { setUser } = useStore();
   const handleEdit = () => {
-    router.push(`/edit/${id}`);
+    router.push(`/users/${id}/edit`);
     setUser(data);
   };
   return (
@@ -36,7 +36,7 @@ export const EditBtn = ({ data, id }) => {
 export const EnrollBtn = () => {
   const router = useRouter();
   return (
-    <button className="staticBtn" onClick={() => router.push(`/signup`)}>
+    <button className="btn" onClick={() => router.push(`/signup`)}>
       <FaRegHeart />
       Enroll
     </button>
@@ -44,8 +44,11 @@ export const EnrollBtn = () => {
 };
 
 export const TopBtn = () => {
+  const handleToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   return (
-    <div className="top">
+    <div className="top" onClick={handleToTop}>
       <IoIosArrowUp />
       TOP
     </div>

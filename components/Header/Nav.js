@@ -1,4 +1,3 @@
-import styles from "@/styles/Header.module.css";
 import useStore from "lib/default";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -15,25 +14,17 @@ export default function Nav() {
       {userId ? (
         <>
           {" "}
-          <ul className={styles.gnb}>
+          <ul className={`gnb`}>
             <li>
               <Link href={`/posts/${userId}`}>
-                <a
-                  className={
-                    pathname.includes("posts") ? `${styles.currentNav}` : null
-                  }
-                >
+                <a className={pathname.includes("posts") ? `currentNav` : null}>
                   POSTS
                 </a>
               </Link>
             </li>
             <li>
               <Link href={`/todos/${userId}`}>
-                <a
-                  className={
-                    pathname.includes("todos") ? `${styles.currentNav}` : null
-                  }
-                >
+                <a className={pathname.includes("todos") ? `currentNav` : null}>
                   TODOS
                 </a>
               </Link>
@@ -41,18 +32,14 @@ export default function Nav() {
             <li>
               <Link href={`/albums/${userId}`}>
                 <a
-                  className={
-                    pathname.includes("albums") ? `${styles.currentNav}` : null
-                  }
+                  className={pathname.includes("albums") ? `currentNav` : null}
                 >
                   ALBUMS
                 </a>
               </Link>
             </li>
           </ul>
-          <div className={styles.user}>
-            Hello {user ? user.username : null}{" "}
-          </div>
+          <div className={`user`}>Hello {user ? user.username : null} </div>
         </>
       ) : (
         <>

@@ -7,22 +7,25 @@ import React, { useEffect } from "react";
 import ReactFullpage from "@fullpage/react-fullpage/dist/react-fullpage";
 import { BackBtn, DeleteBtn, EditBtn, TopBtn } from "@/components/Btn";
 import { useRouter } from "next/router";
-const opts = {
-  licenseKey: "OPEN-SOURCE-GPLV3-LICENSE",
-};
-export default function Details(props) {
-  const user = props.user;
+import useStore from "lib/default";
+
+export default function Details({ user }) {
   const router = useRouter();
   return (
-    <Layout title="user Detail Information" full>
+    <Layout title="user Detail Information">
       <ReactFullpage
-        {...opts}
+        licenseKey="OPEN-SOURCE-GPLV3-LICENSE"
+        afterLoad={(origin) => {
+          const header = document.body.children[0].children[0];
+          if (!document.body.className.includes("fp-viewing-0")) {
+            header.classList.add("activeHeader");
+          } else {
+            header.classList.remove("activeHeader");
+          }
+        }}
         render={({ state, fullpageApi }) => {
           return (
             <ReactFullpage.Wrapper>
-              {props.children && (
-                <div className="section section--home ">{props.children}</div>
-              )}
               <div className={`section project--one `}>
                 <div
                   className={`${styles.first} ${styles.bg}`}
@@ -76,7 +79,7 @@ export default function Details(props) {
                     </ul>
                     <BackBtn func={() => router.back()} />
                     <DeleteBtn />
-                    <EditBtn id={user.id} url />
+                    <EditBtn id={user.id} data={user} />
                   </div>
                   <div className={styles.img}>
                     <img src={`/images/user${user.id}.jpg`} />
@@ -97,9 +100,12 @@ export default function Details(props) {
                         in the middle of text.
                       </p>
                       <p className={styles.icons}>
-                        <BsCardList />
-                        <BsPencilSquare />
-                        <MdOutlineInsertComment />
+                        <BsCardList
+                          onClick={() => router.push(`/posts/${user.id}`)}
+                        />
+                        <BsPencilSquare
+                          onClick={() => router.push(`/posts/${user.id}/new`)}
+                        />
                       </p>
                     </li>
                     <li>
@@ -113,8 +119,9 @@ export default function Details(props) {
                         in the middle of text.
                       </p>
                       <p className={styles.icons}>
-                        <BsCardList />
-                        <BsPencilSquare />
+                        <BsCardList
+                          onClick={() => router.push(`/todos/${user.id}`)}
+                        />
                       </p>
                     </li>
                     <li>
@@ -128,7 +135,9 @@ export default function Details(props) {
                         in the middle of text.
                       </p>
                       <p className={styles.icons}>
-                        <BsGrid3X3 />
+                        <BsGrid3X3
+                          onClick={() => router.push(`/albums/${user.id}`)}
+                        />
                         <BsCardList />
                       </p>
                     </li>

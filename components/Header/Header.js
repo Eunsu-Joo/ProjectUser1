@@ -1,6 +1,5 @@
 import Image from "next/image";
 import logo from "@/public/next.js.png";
-import styles from "@/styles/Header.module.css";
 import Nav from "./Nav";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -10,18 +9,19 @@ const Header = () => {
   const updateScroll = () => {
     setScrollPosition(window.scrollY || document.documentElement.scrollTop);
   };
+
   useEffect(() => {
     window.addEventListener("scroll", updateScroll);
-    return window.addEventListener("scroll", updateScroll);
+    return () => {
+      window.removeEventListener("scroll", updateScroll);
+    };
   }, []);
   return (
     <header
-      className={`${styles.header} ${
-        scrollPosition > 500 ? `${styles.active}` : null
-      } `}
+      className={`header ${scrollPosition > 450 ? `activeHeader` : null} `}
     >
-      <nav className={styles.container}>
-        <h1 className={styles.logo}>
+      <nav>
+        <h1 className={`logo`}>
           <Link href="/">
             <a>
               {" "}

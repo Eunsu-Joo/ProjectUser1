@@ -12,8 +12,7 @@ import { TopBtn } from "@/components/Btn";
 export default function Posts({ data }) {
   const { setPosts, posts } = postsStore();
   const router = useRouter();
-  const [isChange, setIsChange] = useState(false);
-  const change = () => setIsChange(!isChange);
+  const { userId } = router.query;
   useEffect(() => {
     setPosts(data);
   }, []);
@@ -21,20 +20,19 @@ export default function Posts({ data }) {
     <Layout>
       <Showcase bg="/images/bg1.png" title="Your Valuable Posts" />
       <div className={`container ${styles.article}`}>
-        <h2>Posts</h2>
         <div className={styles.postsContainer}>
-          {!isChange && (
-            <span className={styles.link} onClick={change}>
-              {" "}
-              <BsPencilSquare />
-              Write new Post
-            </span>
-          )}
-          {isChange ? (
-            <AddPost change={change} />
-          ) : (
-            posts.map((post) => <PostItem post={post} key={post.id} />)
-          )}
+          <span
+            className={styles.link}
+            onClick={() => router.push(`/posts/${userId}/new`)}
+          >
+            {" "}
+            <BsPencilSquare />
+            Write new Post
+          </span>
+
+          {posts.map((post) => (
+            <PostItem post={post} key={post.id} />
+          ))}
         </div>
       </div>
       <TopBtn />

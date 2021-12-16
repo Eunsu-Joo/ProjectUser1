@@ -1,0 +1,46 @@
+.albumsContainer {
+  width: 100%;
+  padding: 0 60px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.albumItem {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.albumItem:hover .desc {
+  bottom: 0;
+}
+.imgBox {
+  width: 420px;
+  height: 420px;
+  overflow: hidden;
+}
+.imgBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.desc {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  position: absolute;
+  left: 0;
+  bottom: -200px;
+  padding: 1em 0.7em;
+  transition: bottom 0.2s ease;
+}
+.desc h3 {
+  font-family: "Playfair Display", serif;
+  letter-spacing: 2px;
+  margin-bottom: 0.5em;
+}
+.desc h3 span {
+  font-size: 1.5rem;
+}
+.desc h4 {
+  letter-spacing: 1px;
+}

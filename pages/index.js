@@ -4,6 +4,7 @@ import styles from "@/styles/Home.module.css";
 import useStore, { userState } from "lib/default";
 import { useEffect } from "react";
 import Showcase from "@/components/Showcase";
+import { TopBtn } from "@/components/Btn";
 export default function Home({ users }) {
   const { data, setData } = useStore();
   useEffect(() => {
@@ -13,18 +14,15 @@ export default function Home({ users }) {
     <>
       {data && (
         <Layout>
-          <Showcase
-            title="Welcome To HelloUsers Page"
-            bg="/images/showcase.jpg"
-          />
+          <Showcase title="Welcome To HelloUsers Page" bg="/images/bg3.png" />
           <div className="container">
-            <h1 className={styles.title}>Hello Users</h1>
             <div className={styles.gridContainer}>
               {data.map((user) => (
                 <UserItem user={user} key={user.id} />
               ))}
             </div>
           </div>
+          <TopBtn />
         </Layout>
       )}
     </>

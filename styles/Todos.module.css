@@ -1,0 +1,69 @@
+.article {
+  width: 100%;
+  margin: 100px 0;
+  position: relative;
+  display: flex;
+}
+
+.imgBox {
+  width: 100%;
+}
+.imgBox img {
+  width: 80%;
+  object-fit: cover;
+  filter: grayscale(0.5) contrast(1.8);
+}
+.contents {
+  width: 60%;
+  height: 700px;
+  z-index: 10;
+  background-color: #fff;
+  padding: 50px 0;
+  overflow: auto;
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+.contentsContainer {
+  overflow: auto;
+}
+.contents::-webkit-scrollbar {
+  /* 스크롤바 막대 너비 설정 */
+  width: 10px;
+} /* 스크롤바 막대 설정*/
+.contents::-webkit-scrollbar-thumb {
+  /* 스크롤바 막대 높이 설정 */
+  height: 17%;
+  background-color: #000; /* 스크롤바 둥글게 설정 */
+  border-radius: 10px;
+} /* 스크롤바 뒷 배경 설정*/
+.contents::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0);
+  box-shadow: inset 0px 0px 5px white;
+}
+.check {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 3rem;
+  margin-bottom: 1rem;
+}
+.check span {
+  padding-left: 0.5rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.todo {
+  margin: 0 2rem;
+  padding: 1.5rem 3rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #dcdde1;
+}
+.todo span {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
