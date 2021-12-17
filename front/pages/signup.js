@@ -23,10 +23,18 @@ export default function signup() {
       .get(`${API_URL}/api/users`)
       .then((res) => res.data.data);
     const users = data.map((user) => user.attributes.username);
+
     const { username } = inputs;
-    users.forEach((elem) => {
-      console.log(elem.toLowerCase());
-    });
+    if (!username) {
+      alert("유저네임을 입력해주세요");
+    }
+    if (username) {
+      users.forEach((user) => {
+        user.lowerCase() !=== username || user === username
+          ? alert("다른 유저네임을 입력해주세요.")
+          : null;
+      });
+    }
   };
   const handleSUbmit = (e) => {
     e.preventDefault();
