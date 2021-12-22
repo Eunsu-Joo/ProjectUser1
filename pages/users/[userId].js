@@ -56,7 +56,7 @@ export default function Details({ user }) {
                     </h2>
                     <p className={styles.desc}>
                       Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
+                      typesetting industry. Lorem Ipsum has been the industry
                       standard dummy text ever since the 1500s, when an unknown
                       printer took a galley of type and scrambled it to make a
                       type specimen book. It has survived not only five
@@ -96,7 +96,7 @@ export default function Details({ user }) {
                       <p>
                         {" "}
                         If you are going to use a passage of Lorem Ipsum, you
-                        need to be sure there isn't anything embarrassing hidden
+                        need to be sure there isn anything embarrassing hidden
                         in the middle of text.
                       </p>
                       <p className={styles.icons}>
@@ -117,7 +117,7 @@ export default function Details({ user }) {
                       <p>
                         {" "}
                         If you are going to use a passage of Lorem Ipsum, you
-                        need to be sure there isn't anything embarrassing hidden
+                        need to be sure there isn anything embarrassing hidden
                         in the middle of text.
                       </p>
                       <p className={styles.icons}>
@@ -133,7 +133,7 @@ export default function Details({ user }) {
                       <p>
                         {" "}
                         If you are going to use a passage of Lorem Ipsum, you
-                        need to be sure there isn't anything embarrassing hidden
+                        need to be sure there isn anything embarrassing hidden
                         in the middle of text.
                       </p>
                       <p className={styles.icons}>

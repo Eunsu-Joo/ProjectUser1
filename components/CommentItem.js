@@ -7,7 +7,7 @@ const CommentItem = styled.div`
     margin-bottom: 0.5em;
   }
 `;
-export default ({ isCheck, comment }) => {
+export default function CommentItem({ isCheck, comment }) {
   const { name, email, body } = comment;
   return (
     <>
@@ -20,4 +20,4 @@ export default ({ isCheck, comment }) => {
       ) : null}
     </>
   );
-};
+}
