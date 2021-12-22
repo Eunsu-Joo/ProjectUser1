@@ -1,7 +1,6 @@
 {
   "name": "next_project_user",
   "private": true,
-  "homepage": "http://eunsu-joo.github.io/NEXTJS_ProjectUser",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -26,5 +25,6 @@
   "devDependencies": {
     "eslint": "8.4.0",
     "eslint-config-next": "12.0.7"
-  }
+  },
+  "homepage": " https://eunsu-joo.github.io/nextjs-projectuser/"
 }
