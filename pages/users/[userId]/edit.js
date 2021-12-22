@@ -22,7 +22,7 @@ export default function Edit() {
     e.preventDefault();
     setError(errors);
     if (formValid) {
-      console.log("pass");
+      const updateUser = async () => {};
     }
   };
   return (

@@ -10,6 +10,7 @@ import axios from "axios";
 import { API_URL } from "config";
 export default function Signup() {
   const [error, setError] = useState(null);
+  const [isCheck, setIsCheck] = useState(false);
   const [inputs, onChange] = useInput({
     name: "",
     username: "",
@@ -24,24 +25,31 @@ export default function Signup() {
       .get(`${API_URL}/api/users`)
       .then((res) => res.data.data);
     const users = data.map((user) => user.attributes.username);
+    const userLowerCase = users.map((user) => user.toLowerCase());
     const { username } = inputs;
     if (!username) {
-      alert("유저네임을 입력해주세요");
+      return alert("유저네임을 입력해주세요");
     }
     if (username) {
-      users.forEach((user) => {
-        console.log(user);
-        user.lowerCase() !== username || user === username
-          ? alert("다른 유저네임을 입력해주세요.")
-          : null;
-      });
+      if (users.includes(username) || userLowerCase.includes(username)) {
+        return alert("다른 유저네임을 입력해주세요");
+      }
     }
+    return alert("사용할 수 있는 유저네임입니다.");
   };
   const handleSUbmit = (e) => {
     e.preventDefault();
     setError(errors);
     if (formValid) {
-      console.log("pass");
+      const sendUpdate = async () => {
+        const res = await axios({
+          url: API_URL,
+          method: "put",
+          data: inputs,
+        });
+        console.log(res);
+      };
+      sendUpdate();
     }
   };
   return (
