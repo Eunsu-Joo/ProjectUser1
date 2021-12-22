@@ -12,7 +12,6 @@ import { API_URL } from "config";
 import axios from "axios";
 
 export default function Details({ user }) {
-  const { setIsPage, isPage } = useStore();
   const router = useRouter();
   const {
     id,
@@ -106,8 +105,7 @@ export default function Details({ user }) {
                         />
                         <BsPencilSquare
                           onClick={() => {
-                            router.push(`/posts/${id}`);
-                            setIsPage(true);
+                            router.push(`/posts/${id}/new`);
                           }}
                         />
                       </p>

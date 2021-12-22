@@ -6,15 +6,12 @@ import { BsPencilSquare } from "react-icons/bs";
 import PostItem from "@/components/PostItem";
 import { useEffect, useState } from "react";
 import postsStore from "lib/posts";
-import { useRouter } from "next/router";
 import { TopBtn } from "@/components/Btn";
-import AddPost from "@/components/AddPost";
-import useStore from "lib/default";
+import { useRouter } from "next/router";
 export default function Posts({ data, params }) {
-  console.log(params);
-
-  const { isPage, setIsPage } = useStore();
+  const router = useRouter();
   const { setPosts, posts } = postsStore();
+  console.log(params);
   useEffect(() => {
     setPosts(data);
   }, []);
@@ -23,22 +20,17 @@ export default function Posts({ data, params }) {
       <Showcase bg="/images/bg1.png" title="Your Valuable Posts" />
       <div className={`container ${styles.article}`}>
         <div className={styles.postsContainer}>
-          {isPage && (
-            <span className={styles.link} onClick={() => setIsPage(!isPage)}>
-              {" "}
-              <BsPencilSquare />
-              Write new Post
-            </span>
-          )}
+          <span
+            className={styles.link}
+            onClick={() => router.push(`/posts/${params}/new`)}
+          >
+            <BsPencilSquare />
+            Write new Post
+          </span>
 
-          {!isPage ? (
-            <>
-              <h2 className={styles.title}>Posts</h2>
-              <AddPost />
-            </>
-          ) : (
-            posts.map((post) => <PostItem post={post} key={post.id} />)
-          )}
+          {posts.map((post) => (
+            <PostItem post={post} key={post.id} />
+          ))}
         </div>
       </div>
       <TopBtn />
@@ -62,5 +54,5 @@ export async function getStaticProps({ params }) {
     `https://jsonplaceholder.typicode.com/posts?userId=${params.userId}`
   );
   const data = await res.data;
-  return { props: { data: data, params: params } };
+  return { props: { data: data, params: params.userId } };
 }
