@@ -14,7 +14,6 @@
     "@emotion/styled": "^11.6.0",
     "@fullpage/react-fullpage": "^0.1.19",
     "axios": "^0.24.0",
-    "gh-pages": "^3.2.3",
     "next": "12.0.7",
     "react": "17.0.2",
     "react-device-detect": "^2.1.2",
@@ -25,7 +24,8 @@
   },
   "devDependencies": {
     "eslint": "8.4.0",
-    "eslint-config-next": "12.0.7"
+    "eslint-config-next": "12.0.7",
+    "gh-pages": "^3.2.3"
   },
   "homepage": " https://eunsu-joo.github.io/nextjs-projectuser/"
 }

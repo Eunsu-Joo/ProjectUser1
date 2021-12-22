@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import CommentItem from "./CommentItem";
 import useInput from "hooks/useInput";
-const PostItem = styled.div`
+const Post = styled.div`
   margin-bottom: 1rem;
   background-color: #f9f9f9;
   display: flex;
@@ -48,7 +48,7 @@ const PostItem = styled.div`
   }
 `;
 
-export default ({ post }) => {
+export default function PostItem({ post }) {
   const { id, body, title } = post;
   const [isCheck, setIsCheck] = useState(false);
   const [isSend, setIsSend] = useState(false);
@@ -80,7 +80,7 @@ export default ({ post }) => {
     setComments([...comments, { ...inputs, id: lastId + 1 }]);
   };
   return (
-    <PostItem>
+    <Post>
       <h3>
         Post Number / <span>{id}</span>{" "}
       </h3>
@@ -127,6 +127,6 @@ export default ({ post }) => {
           </>
         )}
       </div>
-    </PostItem>
+    </Post>
   );
-};
+}

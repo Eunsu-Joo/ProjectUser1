@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const CommentItem = styled.div`
+const Comment = styled.div`
   margin-bottom: 0.5rem;
   .title {
     font-weight: 700;
@@ -12,11 +12,11 @@ export default function CommentItem({ isCheck, comment }) {
   return (
     <>
       {isCheck ? (
-        <CommentItem>
+        <Comment>
           <p className="title">Name : {name}</p>
           <p>Email : {email}</p>
           <p>{body}</p>
-        </CommentItem>
+        </Comment>
       ) : null}
     </>
   );
