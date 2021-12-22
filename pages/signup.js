@@ -10,15 +10,15 @@ import axios from "axios";
 import { API_URL } from "config";
 export default function Signup() {
   const [error, setError] = useState(null);
-  const [isCheck, setIsCheck] = useState(false);
-  const [inputs, onChange] = useInput({
+  const [attributes, onChange] = useInput({
     name: "",
     username: "",
     phone: "",
     website: "",
     email: "",
+    company: "",
   });
-  let { formValid, errors } = validator(inputs);
+  let { formValid, errors } = validator(attributes);
   const handleCheck = async (e) => {
     e.preventDefault();
     const data = await axios
@@ -26,7 +26,7 @@ export default function Signup() {
       .then((res) => res.data.data);
     const users = data.map((user) => user.attributes.username);
     const userLowerCase = users.map((user) => user.toLowerCase());
-    const { username } = inputs;
+    const { username } = attributes;
     if (!username) {
       return alert("유저네임을 입력해주세요");
     }
@@ -37,19 +37,16 @@ export default function Signup() {
     }
     return alert("사용할 수 있는 유저네임입니다.");
   };
-  const handleSUbmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setError(errors);
     if (formValid) {
-      const sendUpdate = async () => {
-        const res = await axios({
-          url: API_URL,
-          method: "put",
-          data: inputs,
-        });
-        console.log(res);
+      const sendCreate = async () => {
+        await axios
+          .post(`${API_URL}/api/users`, { data: attributes })
+          .then((res) => console.log(res));
       };
-      sendUpdate();
+      sendCreate();
     }
   };
   return (
@@ -58,7 +55,7 @@ export default function Signup() {
       <div className={styles.wrap}>
         <div className={`container ${styles.container}`}>
           <h2>Signup Our Users and Enjoy your Life.</h2>
-          <form action="" onSubmit={handleSUbmit}>
+          <form action="" onSubmit={handleSubmit}>
             <div className={styles.inputContainer}>
               <div className={styles.inputBox}>
                 <input
@@ -111,6 +108,15 @@ export default function Signup() {
                   onChange={onChange}
                 />
                 {error ? <p>{errors.website}</p> : null}
+              </div>
+              <div className={styles.inputBox}>
+                <input
+                  type="text"
+                  placeholder="company"
+                  name="company"
+                  onChange={onChange}
+                />
+                {error ? <p>{errors.company}</p> : null}
               </div>
               <div className={styles.btns}>
                 <EnrollBtn />

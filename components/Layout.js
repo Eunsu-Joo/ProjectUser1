@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Footer from "./Footer";
 import Header from "./Header/Header";
 import Showcase from "./Showcase";
 
@@ -12,6 +13,7 @@ export default function Layout({ title, description, keywords, children }) {
       </Head>
       <Header />
       {children}
+      <Footer />
     </>
   );
 }

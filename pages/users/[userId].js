@@ -2,14 +2,13 @@ import Layout from "@/components/Layout";
 import styles from "@/styles/Users.module.css";
 import { IoIosArrowUp } from "react-icons/io";
 import { BsMouse, BsCardList, BsPencilSquare, BsGrid3X3 } from "react-icons/bs";
-import { MdOutlineInsertComment } from "react-icons/md";
 import React, { useEffect } from "react";
 import ReactFullpage from "@fullpage/react-fullpage/dist/react-fullpage";
 import { BackBtn, DeleteBtn, EditBtn, TopBtn } from "@/components/Btn";
 import { useRouter } from "next/router";
-import useStore from "lib/default";
 import { API_URL } from "config";
 import axios from "axios";
+import Modal from "portal/Modal";
 
 export default function Details({ user }) {
   const router = useRouter();
@@ -24,18 +23,22 @@ export default function Details({ user }) {
         afterLoad={(origin) => {
           const header = document.body.children[0].children[0];
           if (!document.body.className.includes("fp-viewing-0")) {
-            header.classList.add("activeHeader");
+            header.classList.add(`${styles.activeHeader}`);
           } else {
-            header.classList.remove("activeHeader");
+            header.classList.remove(`${styles.activeHeader}`);
           }
         }}
         render={({ state, fullpageApi }) => {
           return (
             <ReactFullpage.Wrapper>
-              <div className={`section project--one `}>
+              <div className="section project--one">
                 <div
                   className={`${styles.first} ${styles.bg}`}
-                  style={{ backgroundImage: `url(/images/user${id}.jpg)` }}
+                  style={{
+                    backgroundImage: `url(/images/user${
+                      id > 10 ? id - 10 : id
+                    }.jpg )`,
+                  }}
                 >
                   <h1 className={styles.title}>
                     <span>Hello , </span>
@@ -69,20 +72,22 @@ export default function Details({ user }) {
                         <span>{company}</span>
                       </li>
                       <li>
-                        <p>Email</p>
-                        <span>{email}</span>
+                        <p>Website</p>
+                        <span>{website}</span>
                       </li>
                       <li>
-                        <p>Phone</p>
-                        <span>{phone}</span>
+                        <p>Contact</p>
+                        <span>
+                          {phone} / {email}
+                        </span>
                       </li>
                     </ul>
                     <BackBtn func={() => router.back()} />
-                    <DeleteBtn />
+                    <DeleteBtn data id={user.id} />
                     <EditBtn id={user.id} data={user} />
                   </div>
                   <div className={styles.img}>
-                    <img src={`/images/user${id}.jpg`} />
+                    <img src={`/images/user${id > 10 ? id - 10 : id}.jpg`} />
                   </div>
                 </div>
               </div>

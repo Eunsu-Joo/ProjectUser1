@@ -2,14 +2,19 @@ import Image from "next/image";
 import logo from "@/public/next.js.png";
 import Nav from "./Nav";
 import Link from "next/link";
+import styles from "@/styles/Header.module.css";
 import { useEffect, useState } from "react";
-
+import { EnrollBtn } from "../Btn";
+import { useRouter } from "next/router";
 const Header = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const updateScroll = () => {
     setScrollPosition(window.scrollY || document.documentElement.scrollTop);
   };
-
+  const {
+    pathname,
+    query: { userId },
+  } = useRouter();
   useEffect(() => {
     window.addEventListener("scroll", updateScroll);
     return () => {
@@ -18,10 +23,12 @@ const Header = () => {
   }, []);
   return (
     <header
-      className={`header ${scrollPosition > 450 ? `activeHeader` : null} `}
+      className={`${styles.header} ${
+        scrollPosition > 450 ? `${styles.activeHeader}` : null
+      } `}
     >
       <nav>
-        <h1 className={`logo`}>
+        <h1 className={styles.logo}>
           <Link href="/">
             <a>
               {" "}
@@ -29,7 +36,7 @@ const Header = () => {
             </a>
           </Link>
         </h1>
-        <Nav />
+        {userId ? <Nav /> : <EnrollBtn />}
       </nav>
     </header>
   );

@@ -14,6 +14,7 @@
     "@emotion/styled": "^11.6.0",
     "@fullpage/react-fullpage": "^0.1.19",
     "axios": "^0.24.0",
+    "lodash": "^4.17.21",
     "next": "12.0.7",
     "react": "17.0.2",
     "react-device-detect": "^2.1.2",

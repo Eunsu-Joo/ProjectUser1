@@ -1,28 +1,35 @@
-import { DeleteBtn, EditBtn, EnrollBtn } from "@/components/Btn";
+import { EditBtn } from "@/components/Btn";
 import Layout from "@/components/Layout";
 import styles from "@/styles/Signup.module.css";
-import { MdErrorOutline } from "react-icons/md";
 import Showcase from "@/components/Showcase";
 import useInput from "hooks/useInput";
 import validator from "common/validator";
+import { API_URL } from "config";
 import { useState } from "react";
 import useStore from "lib/default";
+import axios from "axios";
 export default function Edit() {
   const [error, setError] = useState(null);
   const { user } = useStore();
-  const [data, onChange] = useInput({
+  const [attributes, onChange] = useInput({
     name: "",
     username: user && user.attributes.username,
     phone: "",
     website: "",
     email: "",
+    company: "",
   });
-  let { formValid, errors } = validator(data);
+  let { formValid, errors } = validator(attributes);
   const handleSUbmit = (e) => {
     e.preventDefault();
     setError(errors);
     if (formValid) {
-      const updateUser = async () => {};
+      const sendUpdate = async () => {
+        await axios
+          .put(`${API_URL}/api/users/${user.id}`, { data: attributes })
+          .then((res) => console.log(res));
+      };
+      sendUpdate();
     }
   };
   return (
@@ -81,6 +88,15 @@ export default function Edit() {
                   onChange={onChange}
                 />
                 {error ? <p>{errors.website}</p> : null}
+              </div>
+              <div className={styles.inputBox}>
+                <input
+                  type="text"
+                  placeholder="company"
+                  name="company"
+                  onChange={onChange}
+                />
+                {error ? <p>{errors.company}</p> : null}
               </div>
               <div className={styles.btns}>
                 <EditBtn />

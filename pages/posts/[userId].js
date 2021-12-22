@@ -8,29 +8,35 @@ import { useEffect, useState } from "react";
 import postsStore from "lib/posts";
 import { TopBtn } from "@/components/Btn";
 import { useRouter } from "next/router";
+import AddPost from "@/components/AddPost";
 export default function Posts({ data, params }) {
   const router = useRouter();
   const { setPosts, posts } = postsStore();
+  const [isChange, setIsChange] = useState(false);
   console.log(params);
   useEffect(() => {
     setPosts(data);
   }, []);
+  console.log(isChange);
   return (
     <Layout>
       <Showcase bg="/images/bg1.png" title="Your Valuable Posts" />
       <div className={`container ${styles.article}`}>
         <div className={styles.postsContainer}>
-          <span
-            className={styles.link}
-            onClick={() => router.push(`/posts/${params}/new`)}
-          >
-            <BsPencilSquare />
-            Write new Post
-          </span>
-
-          {posts.map((post) => (
-            <PostItem post={post} key={post.id} />
-          ))}
+          {!isChange && (
+            <span
+              className={styles.link}
+              onClick={() => setIsChange(!isChange)}
+            >
+              <BsPencilSquare />
+              Write new Post
+            </span>
+          )}
+          {isChange ? (
+            <AddPost change={() => setIsChange(!isChange)} />
+          ) : (
+            posts.map((post) => <PostItem post={post} key={post.id} />)
+          )}
         </div>
       </div>
       <TopBtn />

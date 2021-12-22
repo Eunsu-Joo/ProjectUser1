@@ -2,6 +2,7 @@ import useStore from "lib/default";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { EnrollBtn } from "../Btn";
+import styles from "@/styles/Header.module.css";
 export default function Nav() {
   const { user } = useStore();
   const {
@@ -10,20 +11,28 @@ export default function Nav() {
   } = useRouter();
   return (
     <>
-      {userId ? (
+      {userId <= 10 && (
         <>
           {" "}
-          <ul className={`gnb`}>
+          <ul className={styles.gnb}>
             <li>
               <Link href={`/posts/${userId}`}>
-                <a className={pathname.includes("posts") ? `currentNav` : null}>
+                <a
+                  className={
+                    pathname.includes("posts") ? `${styles.currentNav}` : null
+                  }
+                >
                   POSTS
                 </a>
               </Link>
             </li>
             <li>
               <Link href={`/todos/${userId}`}>
-                <a className={pathname.includes("todos") ? `currentNav` : null}>
+                <a
+                  className={
+                    pathname.includes("todos") ? `${styles.currentNav}` : null
+                  }
+                >
                   TODOS
                 </a>
               </Link>
@@ -31,22 +40,20 @@ export default function Nav() {
             <li>
               <Link href={`/albums/${userId}`}>
                 <a
-                  className={pathname.includes("albums") ? `currentNav` : null}
+                  className={
+                    pathname.includes("albums") ? `${styles.currentNav}` : null
+                  }
                 >
                   ALBUMS
                 </a>
               </Link>
             </li>
           </ul>
-          <div className={`user`}>
-            Hello {user && user.attributes.username}{" "}
-          </div>
-        </>
-      ) : (
-        <>
-          <EnrollBtn />
         </>
       )}
+      <div className={styles.user}>
+        Hello {user && user.attributes.username}{" "}
+      </div>
     </>
   );
 }

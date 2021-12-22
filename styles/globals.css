@@ -29,11 +29,11 @@ ol {
   width: 1280px;
   min-height: 960px;
   margin: 0 auto;
-  padding: 60px 0;
-  border: 1px solid black;
+  padding: 60px 0 100px;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  position: relative;
 }
 
 .btn {
@@ -94,76 +94,4 @@ input:focus {
 }
 input:disabled {
   background-color: #d3d3d3;
-}
-.header {
-  width: 100%;
-  height: 60px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 100;
-  color: #fff;
-  background-color: inherit;
-}
-
-.header nav {
-  width: 1280px;
-  margin: 0 auto;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.logo {
-  width: 80px;
-  height: 60px;
-  line-height: 60px;
-  cursor: pointer;
-  position: relative;
-  filter: invert(1);
-}
-.logo a {
-  display: inline-block;
-  width: inherit;
-  height: inherit;
-  display: flex;
-  align-items: center;
-}
-.logo > img {
-  width: 100%;
-}
-.gnb {
-  display: flex;
-}
-.gnb li:not(:nth-last-child(1)) {
-  text-align: center;
-  margin-right: 8rem;
-}
-.gnb a {
-  padding-bottom: 0.3em;
-}
-.user {
-  display: flex;
-  align-items: center;
-  font-size: 1.2rem;
-}
-.icon {
-  margin-right: 1rem;
-}
-
-.currentNav {
-  border-bottom: 1.5px solid #fff;
-  font-weight: 600;
-}
-.activeHeader {
-  background-color: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  color: #333 !important;
-}
-.activeHeader .logo {
-  filter: invert(0);
-}
-.activeHeader .currentNav {
-  border-bottom: 1.5px solid #333;
-  font-weight: 600;
 }

@@ -63,9 +63,9 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "users": {
+    "user": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "oneToOne",
       "target": "api::hellousers.hellousers",
       "mappedBy": "users_permissions_user"
     }

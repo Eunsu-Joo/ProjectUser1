@@ -21,24 +21,17 @@
     "username": {
       "type": "string"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "username"
-    },
     "website": {
       "type": "string"
-    },
-    "password": {
-      "type": "password"
     },
     "company": {
       "type": "string"
     },
     "users_permissions_user": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "oneToOne",
       "target": "plugin::users-permissions.user",
-      "inversedBy": "users"
+      "inversedBy": "user"
     },
     "phone": {
       "type": "string"

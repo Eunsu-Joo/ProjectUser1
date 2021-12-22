@@ -2,13 +2,22 @@ import Layout from "@/components/Layout";
 import UserItem from "@/components/UserItem";
 import styles from "@/styles/Home.module.css";
 import useStore from "lib/default";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Showcase from "@/components/Showcase";
 import { TopBtn } from "@/components/Btn";
 import { API_URL } from "../config";
 import axios from "axios";
+import usePagination from "@/hooks/usePagination";
+import Pagination from "@/components/Pagination";
 export default function Home({ users }) {
   const { setData, data } = useStore();
+
+  const [pageArray, handlePagination, currentPage, pageNumber] = usePagination(
+    6,
+    users.data
+  );
+  const pages = { handlePagination, currentPage, pageNumber };
+
   useEffect(() => {
     setData(users.data);
   }, []);
@@ -19,10 +28,11 @@ export default function Home({ users }) {
           <Showcase title="Welcome To HelloUsers Page" bg="/images/bg3.png" />
           <div className="container">
             <div className={styles.gridContainer}>
-              {data.map((user) => (
+              {pageArray.map((user) => (
                 <UserItem user={user} key={user.id} />
               ))}
             </div>
+            <Pagination {...pages} />
           </div>
           <TopBtn />
         </Layout>

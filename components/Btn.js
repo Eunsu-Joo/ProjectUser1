@@ -5,16 +5,37 @@ import { IoIosArrowUp } from "react-icons/io";
 import { TiArrowBack } from "react-icons/ti";
 import { useRouter } from "next/router";
 import useStore from "lib/default";
-export const DeleteBtn = ({ id, mg }) => {
+import useModal from "@/hooks/useModal";
+import DeleteModal from "portal/DeleteModal";
+import axios from "axios";
+import { API_URL } from "config";
+import { useState } from "react";
+export const DeleteBtn = ({ id, data }) => {
   const { remove } = useStore();
+  const { onOpenModal, open, closeModal } = useModal();
+  const [message, setMessage] = useState(null);
+  const removeData = async () => {
+    const response = await axios
+      .delete(`${API_URL}/api/users/${id}`)
+      .then((res) => {
+        if (res.status === 200) {
+          setMessage("정상적으로 처리되었습니다.");
+        } else if (res.status === 404) {
+          setMessage("애러가 발생했습니다. 콘솔창을 확인해주세요.");
+        }
+      })
+      .then(() => onOpenModal(!open));
+  };
+  const removeItem = () => {
+    remove(id);
+  };
   return (
-    <button
-      className="btn"
-      style={mg ? { marginRight: "1rem" } : null}
-      onClick={() => remove(id)}
-    >
-      <RiDeleteBin6Line /> Delete
-    </button>
+    <>
+      <button className="btn" onClick={data ? removeData : removeItem}>
+        <RiDeleteBin6Line /> Delete
+      </button>
+      {open && <DeleteModal close={closeModal}>{message}</DeleteModal>}
+    </>
   );
 };
 
@@ -56,9 +77,9 @@ export const TopBtn = () => {
 };
 export const BackBtn = ({ func }) => {
   return (
-    <div className="btn" onClick={func}>
+    <button className="btn" onClick={func}>
       <TiArrowBack />
       Back
-    </div>
+    </button>
   );
 };

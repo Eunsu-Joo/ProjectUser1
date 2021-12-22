@@ -61,6 +61,7 @@ export default function PostItem({ post }) {
 
   const sendRequest = async () => {
     setIsCheck(!isCheck);
+    onReset();
     if (isSend) return;
     await axios
       .get(`https://jsonplaceholder.typicode.com/comments?postId=${id}`)

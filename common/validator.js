@@ -2,7 +2,7 @@ const validator = (values) => {
   let formValid = true;
   let errors = {};
   //name
-  const { name, username, phone, email, website } = values;
+  const { name, username, phone, email, website, company } = values;
   if (!name) {
     formValid = false;
     errors["name"] = "Cannot be empty";
@@ -77,7 +77,10 @@ const validator = (values) => {
       errors["website"] = "Input website form";
     }
   }
-
+  if (!company) {
+    formValid = false;
+    errors["company"] = "Cannot be empty";
+  }
   return { formValid, errors };
 };
 export default validator;
