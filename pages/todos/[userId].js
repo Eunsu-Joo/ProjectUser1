@@ -6,7 +6,7 @@ import { useState } from "react";
 import axios from "axios";
 import TodoItem from "@/components/TodoItem";
 import { TopBtn } from "@/components/Btn";
-export default function todos({ data }) {
+export default function Todos({ data }) {
   const [isCheck, setIsCheck] = useState(false);
   return (
     <Layout>

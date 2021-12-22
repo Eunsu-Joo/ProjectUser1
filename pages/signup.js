@@ -8,7 +8,7 @@ import validator from "common/validator";
 import { useState } from "react";
 import axios from "axios";
 import { API_URL } from "config";
-export default function signup() {
+export default function Signup() {
   const [error, setError] = useState(null);
   const [inputs, onChange] = useInput({
     name: "",
@@ -18,19 +18,20 @@ export default function signup() {
     email: "",
   });
   let { formValid, errors } = validator(inputs);
-  const handleCheck = async () => {
+  const handleCheck = async (e) => {
+    e.preventDefault();
     const data = await axios
       .get(`${API_URL}/api/users`)
       .then((res) => res.data.data);
     const users = data.map((user) => user.attributes.username);
-
     const { username } = inputs;
     if (!username) {
       alert("유저네임을 입력해주세요");
     }
     if (username) {
       users.forEach((user) => {
-        user.lowerCase() !=== username || user === username
+        console.log(user);
+        user.lowerCase() !== username || user === username
           ? alert("다른 유저네임을 입력해주세요.")
           : null;
       });

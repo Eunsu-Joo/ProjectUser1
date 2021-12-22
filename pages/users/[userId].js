@@ -91,7 +91,7 @@ export default function Details({ user }) {
                   <ul className={styles.list}>
                     <li>
                       <span>love what you have.</span>
-                      <img src={`/images/todo.png`} />
+                      <img src="/images/todo.png" />
                       <h2>Posts</h2>
                       <p>
                         {" "}
@@ -112,7 +112,7 @@ export default function Details({ user }) {
                     </li>
                     <li>
                       <span>Better late than never.</span>
-                      <img src={`/images/post.png`} />
+                      <img src="/images/post.png" />
                       <h2>Todos</h2>
                       <p>
                         {" "}
@@ -128,7 +128,7 @@ export default function Details({ user }) {
                     </li>
                     <li>
                       <span>Better the last smile</span>
-                      <img src={`/images/album.png`} />
+                      <img src="/images/album.png" />
                       <h2>Albums</h2>
                       <p>
                         {" "}

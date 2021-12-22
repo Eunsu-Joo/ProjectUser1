@@ -7,7 +7,7 @@ import useInput from "hooks/useInput";
 import validator from "common/validator";
 import { useState } from "react";
 import useStore from "lib/default";
-export default function signup() {
+export default function Edit() {
   const [error, setError] = useState(null);
   const { user } = useStore();
   const [data, onChange] = useInput({

@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import styles from "@/styles/Albums.module.css";
 
-export default ({ data }) => {
+export default function AlbumItem({ data }) {
   const { userId, title } = data;
 
   return (
@@ -20,4 +20,4 @@ export default ({ data }) => {
       </div>
     </>
   );
-};
+}
