@@ -17,7 +17,6 @@ export default function Posts({ data, params }) {
   useEffect(() => {
     setPosts(data);
   }, []);
-  console.log(isChange);
   return (
     <Layout>
       <Showcase bg="/images/bg1.png" title="Your Valuable Posts" />

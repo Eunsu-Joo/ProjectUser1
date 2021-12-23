@@ -1,32 +1,12 @@
-import useStore from "lib/default";
-import styled from "styled-components";
 import _, { range } from "lodash";
-const Pagination = styled.div`
-  width: 300px;
-  height: 30px;
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #fff;
-  span {
-    cursor: pointer;
-  }
-  span.current {
-    font-weight: 600;
-    text-decoration: underline;
-  }
-`;
-export default ({ ...pages }) => {
-  const { pageNumber, handlePagination, currentPage } = pages;
-  const { data } = useStore((state) => state);
+import styles from "@/styles/Pagination.module.css";
+
+export default function Pagination({ ...pages }) {
+  const { pageNumber, handlePagination, currentPage, data } = pages;
   const paginationNumber = Math.ceil(data.length / pageNumber);
   const numbers = range(1, paginationNumber + 1);
   return (
-    <Pagination>
+    <div className={styles.pagination}>
       <span
         onClick={() =>
           currentPage === 1 ? false : handlePagination(currentPage - 1)
@@ -37,7 +17,7 @@ export default ({ ...pages }) => {
       {numbers.map((page) => (
         <span
           key={page}
-          className={page === currentPage ? "current" : null}
+          className={page === currentPage ? `${styles.current}` : null}
           onClick={() => handlePagination(page)}
         >
           {page}
@@ -52,6 +32,6 @@ export default ({ ...pages }) => {
       >
         ▶
       </span>
-    </Pagination>
+    </div>
   );
-};
+}

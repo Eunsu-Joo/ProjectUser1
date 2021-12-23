@@ -1,9 +1,15 @@
 import Head from "next/head";
+import { useEffect } from "react/cjs/react.development";
+import { TopBtn } from "./Btn";
 import Footer from "./Footer";
 import Header from "./Header/Header";
-import Showcase from "./Showcase";
 
 export default function Layout({ title, description, keywords, children }) {
+  useEffect(() => {
+    if (document.body.clientHeight > 1500) {
+      console.log("needs top");
+    }
+  }, []);
   return (
     <>
       <Head>
@@ -14,6 +20,7 @@ export default function Layout({ title, description, keywords, children }) {
       <Header />
       {children}
       <Footer />
+      <div id="modal-root"></div>
     </>
   );
 }

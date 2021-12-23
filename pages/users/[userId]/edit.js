@@ -1,44 +1,41 @@
-import { EditBtn } from "@/components/Btn";
 import Layout from "@/components/Layout";
 import styles from "@/styles/Signup.module.css";
 import Showcase from "@/components/Showcase";
 import useInput from "hooks/useInput";
-import validator from "common/validator";
-import { API_URL } from "config";
+import { validatorEdit } from "common/validator";
 import { useState } from "react";
 import useStore from "lib/default";
-import axios from "axios";
+import useModal from "@/hooks/useModal";
+import UpdateModal from "portal/UpdateModal";
+import { EditBtn } from "@/components/Btn";
 export default function Edit() {
   const [error, setError] = useState(null);
   const { user } = useStore();
+  const { open, onOpenModal, closeModal } = useModal();
   const [attributes, onChange] = useInput({
-    name: "",
+    name: user && user.attributes.name,
     username: user && user.attributes.username,
-    phone: "",
-    website: "",
-    email: "",
-    company: "",
+    phone: user && user.attributes.phone,
+    website: user && user.attributes.website,
+    email: user && user.attributes.email,
+    company: user && user.attributes.company,
   });
-  let { formValid, errors } = validator(attributes);
-  const handleSUbmit = (e) => {
+
+  let { formValid, errors } = validatorEdit(attributes);
+  const handleSubmit = (e) => {
     e.preventDefault();
     setError(errors);
     if (formValid) {
-      const sendUpdate = async () => {
-        await axios
-          .put(`${API_URL}/api/users/${user.id}`, { data: attributes })
-          .then((res) => console.log(res));
-      };
-      sendUpdate();
+      onOpenModal(!open);
     }
   };
   return (
-    <Layout title="User Signup page" description="sign up">
-      <Showcase bg="/images/bg2.png" title="Join us Our Members" />
+    <Layout title="User Edit page" description="edit">
+      <Showcase bg="/images/bg2.png" title="User Edit page Right Now" />
       <div className={styles.wrap}>
         <div className={`container ${styles.container}`}>
           <h2>Signup Our Users and Enjoy your Life.</h2>
-          <form action="" onSubmit={handleSUbmit}>
+          <form action="" onSubmit={handleSubmit}>
             <div className={styles.inputContainer}>
               <div className={styles.inputBox}>
                 <input
@@ -98,13 +95,14 @@ export default function Edit() {
                 />
                 {error ? <p>{errors.company}</p> : null}
               </div>
-              <div className={styles.btns}>
-                <EditBtn />
-              </div>
+              <EditBtn />
             </div>
           </form>
         </div>
       </div>
+      {open && (
+        <UpdateModal id={user.id} close={closeModal} attributes={attributes} />
+      )}
     </Layout>
   );
 }

@@ -4,8 +4,7 @@
   "info": {
     "singularName": "hellousers",
     "pluralName": "users",
-    "displayName": "users",
-    "description": ""
+    "displayName": "users"
   },
   "options": {
     "draftAndPublish": true
@@ -15,25 +14,19 @@
     "name": {
       "type": "string"
     },
-    "email": {
-      "type": "email"
-    },
     "username": {
       "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
     },
     "website": {
       "type": "string"
     },
     "company": {
-      "type": "string"
-    },
-    "users_permissions_user": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "user"
-    },
-    "phone": {
       "type": "string"
     }
   }

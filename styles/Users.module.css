@@ -135,6 +135,7 @@
 }
 .list img {
   width: 100%;
+  cursor: pointer;
 }
 .list h2 {
   letter-spacing: 4px;
@@ -142,22 +143,7 @@
 .list li p {
   line-height: 1.3;
 }
-.icons {
-  width: 120px;
-  margin-top: 1em;
-  font-size: 1.3em;
-  display: flex;
-  justify-content: space-around;
-}
-.icons svg {
-  cursor: pointer;
-  position: relative;
-  opacity: 0.6;
-}
 
-.icons svg:hover {
-  opacity: 1;
-}
 .activeHeader {
   background-color: rgba(255, 255, 255, 0.7);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);

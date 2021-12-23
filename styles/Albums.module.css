@@ -1,28 +1,24 @@
 .albumsContainer {
   width: 100%;
-  padding: 0 60px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  display: flex;
+  justify-content: space-between;
 }
 .albumItem {
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  box-shadow: 1px 2px 7px rgba(0, 0, 0, 0.5);
 }
 .albumItem:hover .desc {
   bottom: 0;
 }
 .imgBox {
   width: 420px;
-  height: 420px;
-  overflow: hidden;
+  height: 700px;
+  background: no-repeat center;
+  background-size: cover;
 }
-.imgBox img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+
 .desc {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.8);

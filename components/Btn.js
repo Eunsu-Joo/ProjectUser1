@@ -7,34 +7,15 @@ import { useRouter } from "next/router";
 import useStore from "lib/default";
 import useModal from "@/hooks/useModal";
 import DeleteModal from "portal/DeleteModal";
-import axios from "axios";
-import { API_URL } from "config";
-import { useState } from "react";
-export const DeleteBtn = ({ id, data }) => {
-  const { remove } = useStore();
+import CreateModal from "portal/CreateModal";
+export const DeleteBtn = ({ id }) => {
   const { onOpenModal, open, closeModal } = useModal();
-  const [message, setMessage] = useState(null);
-  const removeData = async () => {
-    const response = await axios
-      .delete(`${API_URL}/api/users/${id}`)
-      .then((res) => {
-        if (res.status === 200) {
-          setMessage("정상적으로 처리되었습니다.");
-        } else if (res.status === 404) {
-          setMessage("애러가 발생했습니다. 콘솔창을 확인해주세요.");
-        }
-      })
-      .then(() => onOpenModal(!open));
-  };
-  const removeItem = () => {
-    remove(id);
-  };
   return (
     <>
-      <button className="btn" onClick={data ? removeData : removeItem}>
+      <button className="btn" onClick={() => onOpenModal(!open)}>
         <RiDeleteBin6Line /> Delete
       </button>
-      {open && <DeleteModal close={closeModal}>{message}</DeleteModal>}
+      {open && <DeleteModal close={closeModal} id={id} />}
     </>
   );
 };
@@ -56,8 +37,14 @@ export const EditBtn = ({ data, id }) => {
 
 export const EnrollBtn = () => {
   const router = useRouter();
+  const routeToEdit = () => {
+    router.push("/signup");
+  };
   return (
-    <button className="btn" onClick={() => router.push(`/signup`)}>
+    <button
+      className="btn"
+      onClick={router.pathname !== "/signup" ? routeToEdit : undefined}
+    >
       <FaRegHeart />
       Enroll
     </button>

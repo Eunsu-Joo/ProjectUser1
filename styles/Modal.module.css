@@ -34,3 +34,12 @@
   right: 1rem;
   cursor: pointer;
 }
+.albumContainer {
+  background-color: #fff;
+  padding: 60px 30px;
+  height: 500px;
+  overflow: scroll;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}

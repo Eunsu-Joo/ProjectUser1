@@ -1,15 +1,17 @@
-import { DeleteBtn, EnrollBtn } from "@/components/Btn";
 import Layout from "@/components/Layout";
 import styles from "@/styles/Signup.module.css";
-import { MdErrorOutline } from "react-icons/md";
+import { FaRegHeart } from "react-icons/fa";
 import Showcase from "@/components/Showcase";
 import useInput from "hooks/useInput";
-import validator from "common/validator";
 import { useState } from "react";
 import axios from "axios";
 import { API_URL } from "config";
+import useModal from "@/hooks/useModal";
+import CreateModal from "portal/CreateModal";
+import { validatorSignup } from "common/validator";
 export default function Signup() {
   const [error, setError] = useState(null);
+  const { open, onOpenModal, closeModal } = useModal();
   const [attributes, onChange] = useInput({
     name: "",
     username: "",
@@ -18,7 +20,7 @@ export default function Signup() {
     email: "",
     company: "",
   });
-  let { formValid, errors } = validator(attributes);
+  let { formValid, errors } = validatorSignup(attributes);
   const handleCheck = async (e) => {
     e.preventDefault();
     const data = await axios
@@ -41,14 +43,10 @@ export default function Signup() {
     e.preventDefault();
     setError(errors);
     if (formValid) {
-      const sendCreate = async () => {
-        await axios
-          .post(`${API_URL}/api/users`, { data: attributes })
-          .then((res) => console.log(res));
-      };
-      sendCreate();
+      onOpenModal(!open);
     }
   };
+
   return (
     <Layout title="User Signup page" description="sign up">
       <Showcase bg="/images/bg2.png" title="Join us Our Members" />
@@ -118,13 +116,15 @@ export default function Signup() {
                 />
                 {error ? <p>{errors.company}</p> : null}
               </div>
-              <div className={styles.btns}>
-                <EnrollBtn />
-              </div>
+              <button className="btn">
+                <FaRegHeart />
+                Enroll
+              </button>
             </div>
           </form>
         </div>
       </div>
+      {open && <CreateModal close={closeModal} attributes={attributes} />}
     </Layout>
   );
 }

@@ -8,7 +8,6 @@ import { BackBtn, DeleteBtn, EditBtn, TopBtn } from "@/components/Btn";
 import { useRouter } from "next/router";
 import { API_URL } from "config";
 import axios from "axios";
-import Modal from "portal/Modal";
 
 export default function Details({ user }) {
   const router = useRouter();
@@ -104,16 +103,6 @@ export default function Details({ user }) {
                         need to be sure there isn anything embarrassing hidden
                         in the middle of text.
                       </p>
-                      <p className={styles.icons}>
-                        <BsCardList
-                          onClick={() => router.push(`/posts/${id}`)}
-                        />
-                        <BsPencilSquare
-                          onClick={() => {
-                            router.push(`/posts/${id}/new`);
-                          }}
-                        />
-                      </p>
                     </li>
                     <li>
                       <span>Better late than never.</span>
@@ -125,11 +114,6 @@ export default function Details({ user }) {
                         need to be sure there isn anything embarrassing hidden
                         in the middle of text.
                       </p>
-                      <p className={styles.icons}>
-                        <BsCardList
-                          onClick={() => router.push(`/todos/${id}`)}
-                        />
-                      </p>
                     </li>
                     <li>
                       <span>Better the last smile</span>
@@ -140,12 +124,6 @@ export default function Details({ user }) {
                         If you are going to use a passage of Lorem Ipsum, you
                         need to be sure there isn anything embarrassing hidden
                         in the middle of text.
-                      </p>
-                      <p className={styles.icons}>
-                        <BsGrid3X3
-                          onClick={() => router.push(`/albums/${id}`)}
-                        />
-                        <BsCardList />
                       </p>
                     </li>
                   </ul>

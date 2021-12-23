@@ -1,0 +1,19 @@
+.pagination {
+  width: 300px;
+  height: 30px;
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+}
+.pagination span {
+  cursor: pointer;
+}
+.pagination span.current {
+  font-weight: 600;
+  text-decoration: underline;
+}

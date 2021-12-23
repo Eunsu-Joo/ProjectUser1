@@ -11,13 +11,11 @@ import usePagination from "@/hooks/usePagination";
 import Pagination from "@/components/Pagination";
 export default function Home({ users }) {
   const { setData, data } = useStore();
-
   const [pageArray, handlePagination, currentPage, pageNumber] = usePagination(
     6,
     users.data
   );
-  const pages = { handlePagination, currentPage, pageNumber };
-
+  const pages = { handlePagination, currentPage, pageNumber, data };
   useEffect(() => {
     setData(users.data);
   }, []);
@@ -34,7 +32,6 @@ export default function Home({ users }) {
             </div>
             <Pagination {...pages} />
           </div>
-          <TopBtn />
         </Layout>
       )}
     </>
