@@ -16,7 +16,9 @@ export default function UserItem({ user }) {
   return (
     <div className={styles.users}>
       <div className={styles.img}>
-        <img src={`/images/user${id > 10 ? id - 10 : id}.jpg`} />
+        <img
+          src={`/images/user${id > 10 ? id.toString().slice(-1) : id}.jpg`}
+        />
       </div>
       <h3 onClick={handleClick}>
         {name} / {username}

@@ -1,15 +1,16 @@
 import Head from "next/head";
-import { useEffect } from "react/cjs/react.development";
+import { useEffect, useState } from "react";
 import { TopBtn } from "./Btn";
 import Footer from "./Footer";
 import Header from "./Header/Header";
 
 export default function Layout({ title, description, keywords, children }) {
+  const [isShow, setIsShow] = useState(false);
   useEffect(() => {
-    if (document.body.clientHeight > 1500) {
-      console.log("needs top");
+    if (window.innerHeight * 1.2 < document.body.clientHeight) {
+      setIsShow(true);
     }
-  }, []);
+  });
   return (
     <>
       <Head>
@@ -20,6 +21,7 @@ export default function Layout({ title, description, keywords, children }) {
       <Header />
       {children}
       <Footer />
+      {isShow && <TopBtn />}
       <div id="modal-root"></div>
     </>
   );

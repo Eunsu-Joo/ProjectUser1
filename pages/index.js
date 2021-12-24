@@ -9,6 +9,7 @@ import { API_URL } from "../config";
 import axios from "axios";
 import usePagination from "@/hooks/usePagination";
 import Pagination from "@/components/Pagination";
+
 export default function Home({ users }) {
   const { setData, data } = useStore();
   const [pageArray, handlePagination, currentPage, pageNumber] = usePagination(
@@ -16,6 +17,7 @@ export default function Home({ users }) {
     users.data
   );
   const pages = { handlePagination, currentPage, pageNumber, data };
+
   useEffect(() => {
     setData(users.data);
   }, []);

@@ -35,7 +35,7 @@ export default function Details({ user }) {
                   className={`${styles.first} ${styles.bg}`}
                   style={{
                     backgroundImage: `url(/images/user${
-                      id > 10 ? id - 10 : id
+                      id > 10 ? id.toString().slice(-1) : id
                     }.jpg )`,
                   }}
                 >
@@ -86,7 +86,11 @@ export default function Details({ user }) {
                     <EditBtn id={user.id} data={user} />
                   </div>
                   <div className={styles.img}>
-                    <img src={`/images/user${id > 10 ? id - 10 : id}.jpg`} />
+                    <img
+                      src={`/images/user${
+                        id > 10 ? id.toString().slice(-1) : id
+                      }.jpg`}
+                    />
                   </div>
                 </div>
               </div>

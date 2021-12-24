@@ -10,7 +10,7 @@ export default function UpdateModal({ id, attributes, close }) {
   const [isSuccess, setIsSuccess] = useState(false);
   const handleUpdate = async () => {
     await axios
-      .put(`${API_URL}/api/user/${id}`, { data: attributes })
+      .put(`${API_URL}/api/users/${id}`, { data: attributes })
       .then((res) => {
         if (res.status === 200) {
           setMessage("정상적으로 처리되었습니다.");

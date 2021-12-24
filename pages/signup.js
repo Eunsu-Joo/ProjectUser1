@@ -9,6 +9,7 @@ import { API_URL } from "config";
 import useModal from "@/hooks/useModal";
 import CreateModal from "portal/CreateModal";
 import { validatorSignup } from "common/validator";
+
 export default function Signup() {
   const [error, setError] = useState(null);
   const { open, onOpenModal, closeModal } = useModal();
