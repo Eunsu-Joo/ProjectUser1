@@ -15,41 +15,31 @@ import AddPost from "@/components/AddPost";
 export default function Posts({ data }) {
   const { setPosts, posts } = postsStore();
   const [isChange, setIsChange] = useState(false);
-  const [postItem, setPostItem] = useState({ itemNumber: 3, startNumber: 0 });
-  const { itemNumber, startNumber } = postItem;
-  const [isCheck, setIsCheck] = useState(false);
-  const postsArray = posts.slice(startNumber, (startNumber + 1) * itemNumber);
-  const showMore = () => {
-    if (itemNumber === 6) {
-      setPostItem({
-        ...postItem,
-        itemNumber: itemNumber + 3,
-      });
-    } else {
-      setPostItem({
-        ...postItem,
-        itemNumber: itemNumber + 3,
-      });
-    }
-  };
-  const showLess = () => {
-    setPostItem({
-      ...postItem,
-      itemNumber: itemNumber - 3,
-    });
-  };
-
+  const [itemToShow, setItemToShow] = useState(3);
+  const [isExpanded, setIsExpanded] = useState(false);
   useEffect(() => {
     setPosts(data);
   }, []);
+  const showMore = () => {
+    if (itemToShow + 3 <= posts.length) {
+      setItemToShow(itemToShow + 3);
+    } else {
+      setItemToShow(posts.length);
+      setIsExpanded(true);
+      if (isExpanded) {
+        setItemToShow(3);
+        setIsExpanded(false);
+      }
+    }
+  };
   return (
     <Layout>
       <Showcase bg="/images/bg1.png" title="Your Valuable Posts" />
       <div className={`container ${styles.article}`}>
         <div className={styles.postsContainer}>
           {!isChange && (
-            <p className={styles.link} onClick={() => setIsChange(!isChange)}>
-              <span>
+            <p className={styles.link}>
+              <span onClick={() => setIsChange(!isChange)}>
                 {" "}
                 <BsPencilSquare />
                 Write new Post
@@ -60,22 +50,23 @@ export default function Posts({ data }) {
             <AddPost change={() => setIsChange(!isChange)} />
           ) : (
             <>
-              {postsArray.map((post) => (
+              {posts.slice(0, itemToShow).map((post) => (
                 <PostItem post={post} key={post.id} />
               ))}
               <div className={styles.showMore}>
-                {" "}
-                {isCheck ? (
-                  <span onClick={showLess}>
-                    <HiOutlineArrowCircleUp />
-                    Show Less
-                  </span>
-                ) : (
-                  <span onClick={showMore}>
-                    <HiOutlineArrowCircleDown />
-                    Show More
-                  </span>
-                )}
+                <span onClick={showMore}>
+                  {isExpanded ? (
+                    <>
+                      <HiOutlineArrowCircleUp />
+                      Show Less
+                    </>
+                  ) : (
+                    <>
+                      <HiOutlineArrowCircleDown />
+                      Show More
+                    </>
+                  )}
+                </span>
               </div>
             </>
           )}

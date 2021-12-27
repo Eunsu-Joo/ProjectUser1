@@ -19,7 +19,7 @@ export default function AlbumItem({ data }) {
   };
   const handleClick = () => {
     onOpenModal(!open);
-    if (isSend) return false;
+    if (isSend) false;
     sendPhotos();
   };
   return (
@@ -41,9 +41,17 @@ export default function AlbumItem({ data }) {
         </div>
       </div>
       {open && (
-        <AlbumModal close={closeModal}>
-          {photos &&
-            photos.map((photo) => <PhotoItem key={photo.id} photo={photo} />)}
+        <AlbumModal close={closeModal} active>
+          {photos ? (
+            photos.map((photo) => <PhotoItem key={photo.id} photo={photo} />)
+          ) : (
+            <img
+              src="/loading.gif"
+              alt=""
+              width={300}
+              style={{ textAlign: "center" }}
+            />
+          )}
         </AlbumModal>
       )}
     </>
